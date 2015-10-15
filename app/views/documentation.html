@@ -37,22 +37,27 @@
 						<h2 class="red"><span class="leckerli-one" style="text-transform:none;font-weight:300;letter-spacing:0;">@include</span> {{mixin.name}};</h2>
 						<div>{{mixin.desc | raw}}</div>
 
-						{# <div class="google-fonts" ng-if="mixin.name == 'googleFont'">
+						{% if mixin.name == 'googleFont'%}
+						<div class="google-fonts">
 							<h6>Currently available fonts:</h6>
 							<ul>
 								<li ng-repeat="font in googleFonts">
 									<span ng-bind="font"></span>
 								</li>
 							</ul>
-						</div> #}
+						</div>
+						{% endif %}
 
-						{# <div ng-if="mixin.args > -1">
+						
+						{% if mixin.args > -1 %}
+						<div>
 
 							<h6>Arguments</h6>
-							<p>This mixin takes <span ng-bind="mixin.args"></span> argument<span ng-if="mixin.args > 1">s</span>.</p>
-							<div ng-bind-html="mixin.params"></div>
+							<p>This mixin takes <span>{{mixin.args}}</span> argument{% if mixin.args > 1%}s{% endif %}.</p>
+							<div>{{mixin.params | raw}}</div>
 
-						</div> #}
+						</div>
+						{% endif %}
 
 						<h6>Usage</h6>
 						<div class="code" ng-init="mixin.selected = 'include'">
@@ -72,11 +77,13 @@
 							<div class="code-body scrollbar" ng-class="{scss:mixin.selected == 'include' || mixin.selected == 'mixin',css:mixin.selected == 'output'}" ng-bind-html="mixin[mixin.selected]"></div>
 						</div>
 
+						{% if mixin.demo %}
+						<h6>Example</h6>
+						<div>{{mixin.demo | raw}}</div>
+						{% endif %}
 
-						<h6 ng-if="mixin.demo">Example</h6>
-						<div ng-if="mixin.demo" ng-bind-html="html(mixin.demo)"></div>
-
-						<div class="code html-code" ng-if="mixin.markup">
+						{% if mixin.markup %}
+						<div class="code html-code">
 							<header>
 								<ul>
 									<li class="active">
@@ -84,8 +91,9 @@
 									</li>
 								</ul>
 							</header>
-							<div class="code-body scrollbar html" ng-bind-html="mixin.markup"></div>
+							<div class="code-body scrollbar html">{{mixin.markup | raw}}</div>
 						</div>
+						{% endif %}
 
 						<hr />
 					</div>
