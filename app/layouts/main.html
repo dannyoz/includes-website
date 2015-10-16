@@ -7,11 +7,12 @@
 		<title>Default title</title>
 	{% endblock %}
 	<link rel="stylesheet" type="text/css" media="all" href="css/styles.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="css/themes/light.css" />
 </head>
   <body>
-    {% include 'header/header.html' %}
+    {% include '../components/header/header.html' %}
     {% block content %}{% endblock %}
-    {% include 'footer/footer.html' %}
+    {% include '../components/footer/footer.html' %}
   </body>
   {% block footerScript %}
 		<script src="js/app.js"></script>
