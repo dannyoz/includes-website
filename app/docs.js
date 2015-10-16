@@ -5,12 +5,13 @@ import Docs from './components/docs/Docs';
 // Component Tree
 // ===========================================
 
-// - Docs
-//   -- Sidebar
-//      -- SBLink
-//
-//   -- List
-//   	-- MixinTab 
+// -- Docs
+//    |-- Sidebar
+//    |   |-- SBLink
+//    |
+//    |-- List
+//        |-- MixinGroup
+//    	      |-- MixinTab 
 
 
 React.render(

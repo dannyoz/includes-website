@@ -12,14 +12,16 @@ var Docs = React.createClass({
 			stylePages : []
 		}
 	},
+
+	goToMixin(mixin){
+		console.log(mixin)
+	},
 	
 	componentDidMount () {
 
 		this.api = new apiService();
 		this.api.request('/api/includes.json')
 			.end(function(err, response){
-
-				console.log(response.body);
 
 			    this.setState({
 			    	includes : response.body.includes,
@@ -33,7 +35,7 @@ var Docs = React.createClass({
 	render (){
 		return (
 			<div id="docs-wrapper">
-				<Sidebar order={this.state.order} includes={this.state.includes}/>
+				<Sidebar order={this.state.order} includes={this.state.includes} goToMixin={this.goToMixin} />
 				<List order={this.state.order} includes={this.state.includes}/>
 			</div>
 		)
