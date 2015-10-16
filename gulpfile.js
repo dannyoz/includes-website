@@ -26,7 +26,7 @@ gulp.task('html', function () {
 });
 
 gulp.task('browserify', function () {
-  gulp.src('./app/app.js', {entry: true})
+  gulp.src(['./app/app.js', './app/tickets/tickets.js'], {entry: true})
     .pipe(browserify({
       transform: ['babelify']
     }))

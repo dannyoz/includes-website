@@ -227,7 +227,7 @@ $break : 750px;
 
 	#docs-container{
 
-		opacity: 0;
+		//opacity: 0;
 		@include vendorPrefix(transition,'all,ease,0.2s');
 
 		&.show{
