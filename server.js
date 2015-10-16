@@ -19,7 +19,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/build/views');
 
 //For static asset files
-['css', 'img', 'js', 'views', 'jsonapi', 'msg'].forEach(function (dir){
+['css', 'img', 'js', 'views', 'api', 'msg'].forEach(function (dir){
     app.use('/'+dir, express.static(__dirname+'/build/'+dir));
 });
 
@@ -53,13 +53,6 @@ app.get('/tickets', function(req, res) {
 	res.sendfile('./app/views/tickets.html');
 });
 
-app.get('/api/:route',function(req,res){
-
-	var json = require('./app/api/'+req.params.route+'.json');
-
-	res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(json));
-});
 
 app.post('/tickets', function (req, res){
 

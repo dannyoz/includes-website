@@ -26,11 +26,16 @@ gulp.task('html', function () {
 });
 
 gulp.task('browserify', function () {
-  gulp.src(['./app/app.js', './app/tickets/tickets.js'], {entry: true})
+  gulp.src(['./app/app.js', './app/docs.js'], {entry: true})
     .pipe(browserify({
       transform: ['babelify']
     }))
     .pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('json', function() {
+  gulp.src('./app/api/**/*.json')
+  .pipe(gulp.dest('./build/api'));
 });
 
 gulp.task('static', function() {
@@ -71,10 +76,10 @@ gulp.task('compass', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('app/**/*.html', ['static']);
+  gulp.watch('app/**/*.html', ['frontEnd']);
   gulp.watch('app/**/*.scss', ['frontEnd']);
   gulp.watch('app/**/*.js', ['frontEnd']);
 });
 
-gulp.task('frontEnd', ['browserify', 'compass', 'static']);
-gulp.task('default', ['browserify', 'compass', 'static', 'watch', 'server']);
+gulp.task('frontEnd', ['browserify', 'compass', 'static', 'json']);
+gulp.task('default', ['browserify', 'compass', 'static', 'json', 'watch', 'server']);

@@ -43,7 +43,7 @@
 		inc.factory('api', ['$http', function ($http){
 		    return{
 		        getContent : function(file){
-		            return $http.get('/jsonapi/'+file+'.json');
+		            return $http.get('/api/'+file+'.json');
 		        },
 		        getGithubData : function(){
 		            return $http.jsonp('https://api.github.com/repos/dannyoz/includes?callback=JSON_CALLBACK');
