@@ -26,11 +26,16 @@ gulp.task('html', function () {
 });
 
 gulp.task('browserify', function () {
-  gulp.src('./app/app.js', {entry: true})
+  gulp.src(['./app/app.js', './app/docs.js'], {entry: true})
     .pipe(browserify({
       transform: ['babelify']
     }))
     .pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('json', function() {
+  gulp.src('./app/api/**/*.json')
+  .pipe(gulp.dest('./build/api'));
 });
 
 gulp.task('static', function() {
@@ -42,15 +47,16 @@ gulp.task('static', function() {
     "demos/dash"
   ]
 
-  var obj = {
-    "docs" : getJsonData('includes'),
-    "version" : getJsonData('version').version,
-    "siteTitle" : "includes | A sass library for awesome modern web interfaces"
-  }
-
   templates.forEach(function(template){
 
     var dest = (template.indexOf('demos/') > -1) ? './build/demos': './build/';
+    var obj = {
+      "docs" : getJsonData('includes'),
+      "version" : getJsonData('version').version,
+      "siteTitle" : "includes | A sass library for awesome modern web interfaces"
+    }
+
+    obj.template = template;
 
     gulp.src('./app/views/'+template+'.html')
       .pipe(data(obj))
@@ -70,10 +76,10 @@ gulp.task('compass', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('app/**/*.html', ['static']);
+  gulp.watch('app/**/*.html', ['frontEnd']);
   gulp.watch('app/**/*.scss', ['frontEnd']);
   gulp.watch('app/**/*.js', ['frontEnd']);
 });
 
-gulp.task('frontEnd', ['browserify', 'compass', 'static']);
-gulp.task('default', ['browserify', 'compass', 'static', 'watch', 'server']);
+gulp.task('frontEnd', ['browserify', 'compass', 'static', 'json']);
+gulp.task('default', ['browserify', 'compass', 'static', 'json', 'watch', 'server']);

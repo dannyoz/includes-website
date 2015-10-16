@@ -4,107 +4,114 @@
 {% endblock %}
 
 {% block content %}
-  	<section class="fullscreen">
+  	<section class="fullscreen" id="documentation">
 
-		<nav id="sidebar">
-			<ul>		
-				{% for inc in docs.includesOrder %}
-		  		<li>
-		  			<a href="#{{inc}}">{{inc}}</a>
-		  			<ul class="subnav">
-		  				{% for mixin in docs.includes[inc].mixins %}
-							<li>
-								<a href="javascript:;"><span>@include</span> {{mixin.name}};</a>
-							</li>
-						{% endfor %}
-					</ul>
-		  		</li>
-				{% endfor %}
-			</ul>
-		</nav>
+  		<div id="docs-wrapper">
 
-		<div class="scrollbar" id="docs">
-
-			<div id="docs-container">
-
-				{% for inc in docs.includesOrder %}
-				<div id="{{inc}}" class="include-block">
-					<h1>{{inc}}</h1>
-					<hr />
-					
-					{% for mixin in docs.includes[inc].mixins %}
-					<div class="mixin">
-						<h2 class="red"><span class="leckerli-one" style="text-transform:none;font-weight:300;letter-spacing:0;">@include</span> {{mixin.name}};</h2>
-						<div>{{mixin.desc | raw}}</div>
-
-						{% if mixin.name == 'googleFont'%}
-						<div class="google-fonts">
-							<h6>Currently available fonts:</h6>
-							<ul>
-								<li ng-repeat="font in googleFonts">
-									<span ng-bind="font"></span>
+			<nav class="vertical page-nav scrollbar"  id="sidebar">
+				<ul>		
+					{% for inc in docs.includesOrder %}
+			  		<li>
+			  			<a href="#{{inc}}">{{inc}}</a>
+			  			<ul class="subnav">
+			  				{% for mixin in docs.includes[inc].mixins %}
+								<li>
+									<a href="javascript:;"><span>@include</span> {{mixin.name}};</a>
 								</li>
-							</ul>
-						</div>
-						{% endif %}
-
-						
-						{% if mixin.args > -1 %}
-						<div>
-
-							<h6>Arguments</h6>
-							<p>This mixin takes <span>{{mixin.args}}</span> argument{% if mixin.args > 1%}s{% endif %}.</p>
-							<div>{{mixin.params | raw}}</div>
-
-						</div>
-						{% endif %}
-
-						<h6>Usage</h6>
-						<div class="code" ng-init="mixin.selected = 'include'">
-							<header>
-								<ul>
-									<li ng-class="{active:mixin.selected == 'include'}">
-										<a ng-click="mixin.selected = 'include'">@Include</a>
-									</li>
-									<li ng-if="mixin.mixin" ng-class="{active:mixin.selected == 'mixin'}">
-										<a ng-click="mixin.selected = 'mixin'">@Mixin</a>
-									</li>
-									<li ng-class="{active:mixin.selected == 'output'}">
-										<a ng-click="mixin.selected = 'output'">Output</a>
-									</li>
-								</ul>
-							</header>
-							<div class="code-body scrollbar" ng-class="{scss:mixin.selected == 'include' || mixin.selected == 'mixin',css:mixin.selected == 'output'}" ng-bind-html="mixin[mixin.selected]"></div>
-						</div>
-
-						{% if mixin.demo %}
-						<h6>Example</h6>
-						<div>{{mixin.demo | raw}}</div>
-						{% endif %}
-
-						{% if mixin.markup %}
-						<div class="code html-code">
-							<header>
-								<ul>
-									<li class="active">
-										<a>Example HTML</a>
-									</li>
-								</ul>
-							</header>
-							<div class="code-body scrollbar html">{{mixin.markup | raw}}</div>
-						</div>
-						{% endif %}
-
-						<hr />
-					</div>
+							{% endfor %}
+						</ul>
+			  		</li>
 					{% endfor %}
+				</ul>
+			</nav>
 
-				</div>	
-				{% endfor %}	
+			<div class="scrollbar" id="docs">
+
+				<div id="docs-container">
+
+					{% for inc in docs.includesOrder %}
+					<div id="{{inc}}" class="include-block">
+						<h1>{{inc}}</h1>
+						<hr />
+						
+						{% for mixin in docs.includes[inc].mixins %}
+						<div class="mixin">
+							<h2 class="red"><span class="leckerli-one" style="text-transform:none;font-weight:300;letter-spacing:0;">@include</span> {{mixin.name}};</h2>
+							<div>{{mixin.desc | raw}}</div>
+
+							{% if mixin.name == 'googleFont'%}
+							<div class="google-fonts">
+								<h6>Currently available fonts:</h6>
+								<ul>
+									<li ng-repeat="font in googleFonts">
+										<span ng-bind="font"></span>
+									</li>
+								</ul>
+							</div>
+							{% endif %}
+
+							
+							{% if mixin.args > -1 %}
+							<div>
+
+								<h6>Arguments</h6>
+								<p>This mixin takes <span>{{mixin.args}}</span> argument{% if mixin.args > 1%}s{% endif %}.</p>
+								<div>{{mixin.params | raw}}</div>
+
+							</div>
+							{% endif %}
+
+							<h6>Usage</h6>
+							<div class="code" ng-init="mixin.selected = 'include'">
+								<header>
+									<ul>
+										<li ng-class="{active:mixin.selected == 'include'}">
+											<a ng-click="mixin.selected = 'include'">@Include</a>
+										</li>
+										<li ng-if="mixin.mixin" ng-class="{active:mixin.selected == 'mixin'}">
+											<a ng-click="mixin.selected = 'mixin'">@Mixin</a>
+										</li>
+										<li ng-class="{active:mixin.selected == 'output'}">
+											<a ng-click="mixin.selected = 'output'">Output</a>
+										</li>
+									</ul>
+								</header>
+								<div class="code-body scrollbar" ng-class="{scss:mixin.selected == 'include' || mixin.selected == 'mixin',css:mixin.selected == 'output'}" ng-bind-html="mixin[mixin.selected]"></div>
+							</div>
+
+							{% if mixin.demo %}
+							<h6>Example</h6>
+							<div>{{mixin.demo | raw}}</div>
+							{% endif %}
+
+							{% if mixin.markup %}
+							<div class="code html-code">
+								<header>
+									<ul>
+										<li class="active">
+											<a>Example HTML</a>
+										</li>
+									</ul>
+								</header>
+								<div class="code-body scrollbar html">{{mixin.markup | raw}}</div>
+							</div>
+							{% endif %}
+
+							<hr />
+						</div>
+						{% endfor %}
+
+					</div>	
+					{% endfor %}	
+
+				</div>
 
 			</div>
 
 		</div>	
 
 	</section>
+{% endblock %}
+{% block footerScript %}
+	<script src="js/docs.js"></script>
 {% endblock %}
