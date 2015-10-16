@@ -42,15 +42,16 @@ gulp.task('static', function() {
     "demos/dash"
   ]
 
-  var obj = {
-    "docs" : getJsonData('includes'),
-    "version" : getJsonData('version').version,
-    "siteTitle" : "includes | A sass library for awesome modern web interfaces"
-  }
-
   templates.forEach(function(template){
 
     var dest = (template.indexOf('demos/') > -1) ? './build/demos': './build/';
+    var obj = {
+      "docs" : getJsonData('includes'),
+      "version" : getJsonData('version').version,
+      "siteTitle" : "includes | A sass library for awesome modern web interfaces"
+    }
+
+    obj.template = template;
 
     gulp.src('./app/views/'+template+'.html')
       .pipe(data(obj))

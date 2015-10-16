@@ -108,7 +108,7 @@
 @include slideIn("down",20);
 
 @include rotateIn(10);
-//@include flipClass(y);
+@include flipClass(y);
 
 @include cardClass;
 @include paddedClass;
@@ -118,19 +118,19 @@
 @include navigationClasses("horizontal",0.9em,50px,20px,0);
 
 
-//@include masonryColumns;
+@include masonryColumns;
 
-// @import "views/header/header";
-// @import "views/home/home";
-// @import "views/footer/footer";
-// @import "views/includes/includes-template";
-// @import "views/styleguide/styleguide";
-// @import "views/tickets/tickets";
+@import "components/header/header";
+@import "views/index";
+@import "components/footer/footer";
+@import "views/documentation";
+@import "views/examples";
+@import "views/tickets";
 // @import "views/tests/test";
 
 .columns{
 
-	//@include textColumns(3);
+	@include textColumns(3);
 }
 
 #test{
