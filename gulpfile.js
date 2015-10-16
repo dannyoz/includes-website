@@ -38,7 +38,8 @@ gulp.task('static', function() {
   var templates = [
     "index",
     "documentation",
-    "examples"
+    "examples",
+    "demos/dash"
   ]
 
   var obj = {
@@ -48,10 +49,13 @@ gulp.task('static', function() {
   }
 
   templates.forEach(function(template){
+
+    var dest = (template.indexOf('demos/') > -1) ? './build/demos': './build/';
+
     gulp.src('./app/views/'+template+'.html')
       .pipe(data(obj))
       .pipe(swig())
-      .pipe(gulp.dest('./build/'))
+      .pipe(gulp.dest(dest))
   });
 
 });
