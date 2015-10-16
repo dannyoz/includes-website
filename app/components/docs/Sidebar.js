@@ -1,4 +1,5 @@
 import React from "../../../node_modules/react/react";
+import SBLink from './SBLink';
 
 var Sidebar = React.createClass({
 
@@ -10,14 +11,8 @@ var Sidebar = React.createClass({
 		return (
 			<nav className="vertical page-nav scrollbar" id="sidebar">
 				<ul>
-					{this.props.order.map(function(inc){
-						return (
-							<li>
-								<a href="#">{inc}</a>
-								<ul className="subnav">
-								</ul>
-							</li>
-						)
+					{this.props.order.map(function(ord){
+						return <SBLink ord={ord} includes={this.props.includes}/>
 					})}
 				</ul>
 			</nav>
