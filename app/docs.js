@@ -6,7 +6,9 @@ var Docs = React.createClass({
 
 	getInitialState (){
 		return {
-			data : {}
+			includes : {},
+			order : [],
+			stylePages : []
 		}
 	},
 	
@@ -19,7 +21,9 @@ var Docs = React.createClass({
 				console.log(response.body);
 
 			    this.setState({
-			    	data : response.body,
+			    	includes : response.body.includes,
+					order : response.body.includesOrder,
+					stylePages : response.body.stylepages
 			    });
 
 			}.bind(this));
@@ -27,16 +31,53 @@ var Docs = React.createClass({
 	},
 	render (){
 		return (
-			<div className="centre">
-				<h1 className="text-centre">Derpy</h1>
+			<div id="docs-wrapper">
+				<Sidebar order={this.state.order} includes={this.state.includes}/>
+				<List order={this.state.order} includes={this.state.includes}/>
 			</div>
 		)
 	}
 
 });
 
+var Sidebar = React.createClass({
+
+	componentDidMount () {
+
+		console.log(this.props)
+	},
+	render() {
+		return (
+			<nav className="vertical page-nav scrollbar" id="sidebar">
+				<ul>
+					{this.props.order.map(function(inc){
+						return (
+							<li>
+								<a href="#">{inc}</a>
+								<ul className="subnav">
+								</ul>
+							</li>
+						)
+					})}
+				</ul>
+			</nav>
+		)
+	}
+});
+
+var List = React.createClass({
+
+	render() {
+		return (
+			<div className="scrollbar" id="docs">
+				List
+			</div>
+		)
+	}
+});
+
 
 React.render(
  	<Docs/>,
-    document.getElementById('docs-wrapper')
+    document.getElementById('documentation')
 );

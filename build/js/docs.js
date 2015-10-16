@@ -52,7 +52,9 @@ var Docs = _node_modulesReactReact2["default"].createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			data: {}
+			includes: {},
+			order: [],
+			stylePages: []
 		};
 	},
 
@@ -64,25 +66,67 @@ var Docs = _node_modulesReactReact2["default"].createClass({
 			console.log(response.body);
 
 			this.setState({
-				data: response.body
+				includes: response.body.includes,
+				order: response.body.includesOrder,
+				stylePages: response.body.stylepages
 			});
 		}).bind(this));
 	},
 	render: function render() {
 		return _node_modulesReactReact2["default"].createElement(
 			"div",
-			{ className: "centre" },
-			_node_modulesReactReact2["default"].createElement(
-				"h1",
-				{ className: "text-centre" },
-				"Derpy"
-			)
+			{ id: "docs-wrapper" },
+			_node_modulesReactReact2["default"].createElement(Sidebar, { order: this.state.order, includes: this.state.includes }),
+			_node_modulesReactReact2["default"].createElement(List, { order: this.state.order, includes: this.state.includes })
 		);
 	}
 
 });
 
-_node_modulesReactReact2["default"].render(_node_modulesReactReact2["default"].createElement(Docs, null), document.getElementById('docs-wrapper'));
+var Sidebar = _node_modulesReactReact2["default"].createClass({
+	displayName: "Sidebar",
+
+	componentDidMount: function componentDidMount() {
+
+		console.log(this.props);
+	},
+	render: function render() {
+		return _node_modulesReactReact2["default"].createElement(
+			"nav",
+			{ className: "vertical page-nav scrollbar", id: "sidebar" },
+			_node_modulesReactReact2["default"].createElement(
+				"ul",
+				null,
+				this.props.order.map(function (inc) {
+					return _node_modulesReactReact2["default"].createElement(
+						"li",
+						null,
+						_node_modulesReactReact2["default"].createElement(
+							"a",
+							{ href: "#" },
+							inc
+						),
+						_node_modulesReactReact2["default"].createElement("ul", { className: "subnav" })
+					);
+				})
+			)
+		);
+	}
+});
+
+var List = _node_modulesReactReact2["default"].createClass({
+	displayName: "List",
+
+	render: function render() {
+		return _node_modulesReactReact2["default"].createElement(
+			"div",
+			{ className: "scrollbar", id: "docs" },
+			"List"
+		);
+	}
+});
+
+_node_modulesReactReact2["default"].render(_node_modulesReactReact2["default"].createElement(Docs, null), document.getElementById('documentation'));
 
 },{"../node_modules/react/react":159,"./components/header/header":1,"./services/apiService":3}],3:[function(require,module,exports){
 "use strict";
