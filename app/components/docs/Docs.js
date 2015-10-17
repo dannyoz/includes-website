@@ -14,7 +14,12 @@ var Docs = React.createClass({
 	},
 
 	goToMixin(mixin){
-		console.log(mixin)
+
+		var target = document.getElementById(mixin);
+		var docs   = document.getElementById('docs');
+		var top    = target.offsetTop;
+
+		docs.scrollTop = top;
 	},
 	
 	componentDidMount () {

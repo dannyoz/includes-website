@@ -35,7 +35,12 @@ var Docs = _node_modulesReactReact2['default'].createClass({
 	},
 
 	goToMixin: function goToMixin(mixin) {
-		console.log(mixin);
+
+		var target = document.getElementById(mixin);
+		var docs = document.getElementById('docs');
+		var top = target.offsetTop;
+
+		docs.scrollTop = top;
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -129,7 +134,7 @@ var MixinGroup = _node_modulesReactReact2["default"].createClass({
 
 		return _node_modulesReactReact2["default"].createElement(
 			"div",
-			{ className: "include-block" },
+			{ className: "include-block", id: group },
 			_node_modulesReactReact2["default"].createElement(
 				"h1",
 				null,
@@ -139,7 +144,7 @@ var MixinGroup = _node_modulesReactReact2["default"].createClass({
 			mixins.map(function (mixin) {
 				return _node_modulesReactReact2["default"].createElement(
 					"div",
-					{ className: "mixin" },
+					{ className: "mixin", id: mixin.name },
 					_node_modulesReactReact2["default"].createElement(
 						"h2",
 						{ className: "red" },
@@ -332,8 +337,6 @@ var SBLink = _node_modulesReactReact2["default"].createClass({
 		var ord = this.props.ord;
 		var inc = this.props.includes;
 		var goToMixin = this.props.goToMixin;
-
-		console.log(this.props.goToMixin);
 
 		return _node_modulesReactReact2["default"].createElement(
 			"li",

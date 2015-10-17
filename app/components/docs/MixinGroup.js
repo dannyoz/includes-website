@@ -12,12 +12,12 @@ var MixinGroup = React.createClass({
 		var mixins = inc[group].mixins;
 
 		return (
-			<div className="include-block">
+			<div className="include-block" id={group}>
 				<h1>{{group}}</h1>
 				<hr />
 				{mixins.map(function(mixin){
 					return (
-						<div className="mixin">
+						<div className="mixin" id={mixin.name}>
 							<h2 className="red"><span className="leckerli-one">@include</span> {mixin.name};</h2>
 							<div dangerouslySetInnerHTML={{__html: mixin.desc}} />
 							{mixin.args > -1 &&

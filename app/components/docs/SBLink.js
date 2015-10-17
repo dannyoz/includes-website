@@ -9,9 +9,7 @@ var SBLink = React.createClass({
 		var ord = this.props.ord;
 		var inc = this.props.includes;
 		var goToMixin = this.props.goToMixin;
-
-		console.log(this.props.goToMixin)
-
+		
 		return (
 			<li>
 				<a onClick={goToMixin.bind(this,ord)}>{ord}</a>
