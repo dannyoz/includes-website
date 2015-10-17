@@ -12,7 +12,7 @@ var SBLink = React.createClass({
 		
 		return (
 			<li>
-				<a onClick={goToMixin.bind(this,ord)}>{ord}</a>
+				<a onClick={goToMixin.bind(this,ord)}>{inc[ord].title}</a>
 				<ul className="subnav">
 					{inc[ord].mixins.map(function(mix){
 						return (

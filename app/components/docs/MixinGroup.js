@@ -10,10 +10,11 @@ var MixinGroup = React.createClass({
 		var group  = this.props.ord;
 		var inc    = this.props.includes;
 		var mixins = inc[group].mixins;
+		var title  = inc[group].title;
 
 		return (
 			<div className="include-block" id={group}>
-				<h1>{{group}}</h1>
+				<h1>{{title}}</h1>
 				<hr />
 				{mixins.map(function(mixin){
 					return (

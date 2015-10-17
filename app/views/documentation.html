@@ -12,7 +12,7 @@
 				<ul>		
 					{% for inc in docs.includesOrder %}
 			  		<li>
-			  			<a href="#{{inc}}">{{inc}}</a>
+			  			<a href="#{{inc}}">{{docs.includes[inc].title}}</a>
 			  			<ul class="subnav">
 			  				{% for mixin in docs.includes[inc].mixins %}
 								<li>
@@ -31,7 +31,7 @@
 
 					{% for inc in docs.includesOrder %}
 					<div id="{{inc}}" class="include-block">
-						<h1>{{inc}}</h1>
+						<h1>{{docs.includes[inc].title}}</h1>
 						<hr />
 						
 						{% for mixin in docs.includes[inc].mixins %}
