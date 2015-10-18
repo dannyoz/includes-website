@@ -131,6 +131,7 @@ var MixinGroup = _node_modulesReactReact2["default"].createClass({
 		var group = this.props.ord;
 		var inc = this.props.includes;
 		var mixins = inc[group].mixins;
+		var title = inc[group].title;
 
 		return _node_modulesReactReact2["default"].createElement(
 			"div",
@@ -138,7 +139,7 @@ var MixinGroup = _node_modulesReactReact2["default"].createClass({
 			_node_modulesReactReact2["default"].createElement(
 				"h1",
 				null,
-				{ group: group }
+				{ title: title }
 			),
 			_node_modulesReactReact2["default"].createElement("hr", null),
 			mixins.map(function (mixin) {
@@ -344,7 +345,7 @@ var SBLink = _node_modulesReactReact2["default"].createClass({
 			_node_modulesReactReact2["default"].createElement(
 				"a",
 				{ onClick: goToMixin.bind(this, ord) },
-				ord
+				inc[ord].title
 			),
 			_node_modulesReactReact2["default"].createElement(
 				"ul",
